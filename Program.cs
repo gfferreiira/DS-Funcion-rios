@@ -115,6 +115,7 @@ class Program
             Console.WriteLine("7 - Remover Id's menores que 4"); 
             Console.WriteLine("8 - Contagem de funcionários e Total de salário"); 
             Console.WriteLine("9 - Buscar por nome");
+            Console.WriteLine("10 - Lista de Tipo Funcionário (clt ou aprendiz)");
             Console.WriteLine("=================================================="); 
             Console.WriteLine("-----Ou tecle qualquer outro número para sair-----"); 
             Console.WriteLine("==================================================");    
@@ -157,6 +158,12 @@ class Program
                         string nome = Console.ReadLine();
                         BuscarPorNome(nome);
                         break;              
+                 case 10: 
+                        Console.WriteLine("Digite o tipo de Funcionário que deseja procurar");
+                        Console.WriteLine("1--- CLT ///// 2--- Aprendiz");
+                        int tipo = int.Parse(Console.ReadLine());
+                        ObterPorTipo(tipo);    
+                        break;       
                 default:
                     Console.WriteLine("Saindo do sistema...");
                     break;    
@@ -248,9 +255,22 @@ class Program
          Console.WriteLine("Nome não encontrado");
             return;
         }
-        
-
     }
+
+    public static void ObterPorTipo(int tipo){
+        if (tipo == 1)
+        {
+            lista = lista.FindAll( x => x.TipoFuncionario == TipoFuncionarioEnum.CLT);
+            ExibirLista();
+        } else if(tipo == 2){
+            lista = lista.FindAll( x => x.TipoFuncionario == TipoFuncionarioEnum.Aprendiz);
+            ExibirLista();
+        } else {
+            Console.WriteLine("Esse número digitado não é valido, retornando.....");
+            return;
+        }
+    }
+
     }
 
 
